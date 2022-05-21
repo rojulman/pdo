@@ -50,7 +50,8 @@ require_once 'dbkoneksi.php';
           </div>
         </div>
         <div class="card-body">
-
+        <div class="row mb-2">
+        <div class="col-sm-8">
 <table class="table table-striped">
     <tbody>
         <tr><td>ID</td><td><?=$row['id']?></td></tr>
@@ -63,6 +64,31 @@ require_once 'dbkoneksi.php';
         <tr>   <td>Jenis Produk</td><td><?=$row['jenis']?></td></tr>
     </tbody>
 </table>
+</div>
+<div class="col-sm-4">
+<?php
+   $filename = 'images/gambar_'.$row['id'].'.jpg';
+   if(file_exists($filename)){
+?>
+  <img class="card-img-top" src="images/gambar_<?=$row['id']?>.jpg" alt="Card image cap">
+<?php 
+   }
+else{
+?>
+  <img class="card-img-top" src="images/noimage.jpg" alt="Card image cap">
+<?php   
+}
+?>
+
+<form action="upload_produk.php" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="<?=$row['id']?>"/>
+  <input type="file" name="foto"/>
+  <input type="submit" class="btn btn-warning" name="upload" value="Upload"/>
+</form>
+
+
+</div>
+</div>
 
         </div>
         <!-- /.card-body -->
