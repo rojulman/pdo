@@ -1,3 +1,8 @@
+<?php session_start();
+if(!isset($_SESSION['USERNAME'])){
+    header('location:login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,6 +145,16 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
+      </li>
+      <li class="nav-item">
+        <?php 
+            if(isset($_SESSION['USERNAME'])){
+        ?>
+            <a href="logout.php" role="button" class="nav-link">Logout</a>
+        <?php }else{
+        ?>
+            <a href="login.php" role="button" class="nav-link">Login</a>
+        <?php } ?>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
